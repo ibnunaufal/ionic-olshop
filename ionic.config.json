@@ -1,0 +1,7 @@
+{
+  "name": "Tarawih Rakaat Counter",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

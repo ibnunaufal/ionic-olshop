@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">
+      Counter
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" (click)="click()">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-card style="text-align: center;">
+    <ion-card-header>
+      <ion-title>
+        Now Counter
+      </ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text class="rakaat">
+        {{ rakaat }}
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card style="text-align: center;">
+    <ion-card-header>
+      <ion-title>
+        Click Everywhere
+      </ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div><span>Single click to count up</span></div>
+      <div><span>Double click to open menu</span></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
