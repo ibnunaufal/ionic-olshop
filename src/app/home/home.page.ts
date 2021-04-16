@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Storage } from "@ionic/storage";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,11 @@ export class HomePage {
 
   count: number= 0;
   rakaat: number= 0;
-  batas: number= 0;
+  batas;
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private storage: Storage,
+    private router: Router
   ) {
     this.setRakaat();
   }
@@ -25,8 +29,10 @@ export class HomePage {
         this.count = 0;
         console.log('Single Tap');
         this.rakaat = this.rakaat + 2;
+        this.storage.set("rakaat", this.rakaat);
         if(this.rakaat == this.batas){
           this.double(1);
+
         }
       }if(this.count > 1){
         this.count = 0;
@@ -37,50 +43,12 @@ export class HomePage {
   }
 
   async setRakaat(){
-    const confirm = this.alertCtrl.create({ 
-      message: "Pilih Jumlah Rakaat",
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          label: '20',
-          value: '20',
-          handler: () => {
-            this.batas = 20;
-          }
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          label: '8',
-          value: '8',
-          handler: () => {
-            this.batas = 8;
-          }
-        }
-      ],
-      buttons: [
-        {
-          text: 'Exit',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
-
-          }
-        }
-      ],
-      backdropDismiss: false
-    });
-
-    console.log(this.batas);
-
-    (await confirm).present();
+    this.storage.get("jumlah").then((res)=>{
+      if(res){
+        this.batas = res;
+      }
+    })
+    
   }
 
   async double(type){
@@ -100,19 +68,22 @@ export class HomePage {
           text: "Reset Count",
           handler: () => {
             this.rakaat=0;
+            this.storage.set("rakaat", 0);
           }
         },
         {
-          text: "Set Rakaat",
+          text: "Back to home",
           handler: () => {
-            this.alertCtrl.dismiss();
-            this.setRakaat;
+            this.storage.set("rakaat", 0);
+            this.storage.set("jumlah", 0);
+            this.router.navigateByUrl("/intro", { replaceUrl: true })
           }
         },
         {
           text: "Exit",
           handler: () => {
             console.log("asd");
+            
           }
         }
       ]

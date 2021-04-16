@@ -1,0 +1,41 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>intro</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content style="text-align: center;">
+
+  <img class="logo" src="../../assets/logo.png" alt="logo" srcset="">
+
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>
+          <ion-title class="choose">Tarawih Rakaat Counter</ion-title>
+          <span>Pilih Jumlah Rakaat</span>
+        </ion-label>
+        <ion-label>
+
+        </ion-label>
+      </ion-list-header>
+  
+      <ion-item (click)="pilih(20)">
+        <ion-label>20 Rakaat</ion-label>
+        <ion-radio value="20"></ion-radio>
+      </ion-item>
+  
+      <ion-item (click)="pilih(8)">
+        <ion-label>8 Rakaat</ion-label>
+        <ion-radio value="8"></ion-radio>
+      </ion-item>
+  
+    </ion-radio-group>
+  </ion-list>
+  <ion-list>
+    <ion-button color="light" (click)="mulai()">
+      Mulai Sholat
+    </ion-button>
+  </ion-list>
+
+</ion-content>
